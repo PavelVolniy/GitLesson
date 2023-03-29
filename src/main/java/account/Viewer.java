@@ -1,14 +1,26 @@
 package account;
 
+import cinema.Cinema;
+
+import java.util.ArrayList;
+
 public class Viewer {
     private String nickName;
     private int age;
-    private int countOfViewedFilms;
+    private int countOfViewedCinema;
+    private ArrayList<Cinema> listOfViewedCinema;
 
-    public Viewer(String nickName, int age, int countOfViewedFilms) {
+    public Viewer(String nickName, int age) {
         setNickName(nickName);
         setAge(age);
-        setCountOfViewedFilms(countOfViewedFilms);
+        if (listOfViewedCinema == null) {listOfViewedCinema = new ArrayList<>();}
+    }
+
+    public void addCinema(Cinema cinema) {
+        if (cinema!=null) {
+            listOfViewedCinema.add(cinema);
+            setCountOfViewedCinema(listOfViewedCinema.size());
+        }
     }
 
     public String getNickName() {
@@ -28,11 +40,24 @@ public class Viewer {
         this.age = Math.max(age, 0);
     }
 
-    public int getCountOfViewedFilms() {
-        return countOfViewedFilms;
+    public int getCountOfViewedCinema() {
+        return countOfViewedCinema;
     }
 
-    public void setCountOfViewedFilms(int countOfViewedFilms) {
-        this.countOfViewedFilms = Math.max(countOfViewedFilms, 0);
+    private void setCountOfViewedCinema(int countOfViewedCinema) {
+        this.countOfViewedCinema = Math.max(countOfViewedCinema, 0);
+    }
+
+    public ArrayList<Cinema> getListOfViewedCinema() {
+        return listOfViewedCinema;
+    }
+
+    @Override
+    public String toString() {
+        return "Viewer{" +
+                "nickName='" + nickName + '\'' +
+                ", age=" + age +
+                ", countOfViewedCinema=" + countOfViewedCinema +
+                '}';
     }
 }
